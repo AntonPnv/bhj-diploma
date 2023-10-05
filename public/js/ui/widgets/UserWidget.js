@@ -16,7 +16,6 @@ class UserWidget {
       throw new Error('Не удалось найти элемент.');
     }
     this.element = element;
-    this.update();
   }
 
   /**
