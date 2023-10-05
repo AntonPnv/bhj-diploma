@@ -58,9 +58,12 @@ class TransactionsPage {
 
     const shouldDelete = confirm('Вы действительно хотите удалить счёт?');
     if (!shouldDelete) return; // Если пользователь отменил удаление счета, выходим из функции
-    const accountId = this.lastOptions.account_id;
 
-    Account.remove(accountId, (err, response) => {
+    const requestData = {
+      account_id: this.lastOptions.account_id
+    };
+
+    Account.remove(requestData, (err, response) => {
       if (response && response.success === true) {
         App.updateWidgets();
         App.updateForms();
@@ -80,9 +83,13 @@ class TransactionsPage {
     const shouldDelete = confirm('Вы действительно хотите удалить эту транзакцию?');
     if (!shouldDelete) return; // Если пользователь отменил удаление транзакции, выходим из функции
 
-    Transaction.remove(id, (err, response) => {
+    const requestData = {
+      id: id
+    };
+
+    Transaction.remove(requestData, (err, response) => {
       if (response && response.success === true) {
-        App.update()
+        App.update();
       }
     });
   }
