@@ -58,7 +58,7 @@ class AccountsWidget {
     if (!User.current()) return;
 
     Account.list({}, (err, response) => {
-      if (response.success === true) {
+      if (response && response.success === true) {
         this.clear();
         response.data.forEach(item => {
           this.renderItem(item);
@@ -87,6 +87,7 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount( element ) {
+    if (!element) return;
     const active = this.element.querySelector('.active');
     if (active) {
       active.classList.remove('active');
