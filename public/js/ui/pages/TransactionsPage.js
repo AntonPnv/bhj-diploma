@@ -60,13 +60,14 @@ class TransactionsPage {
     if (!shouldDelete) return; // Если пользователь отменил удаление счета, выходим из функции
 
     const requestData = {
-      account_id: this.lastOptions.account_id
+      id: this.lastOptions.account_id
     };
 
     Account.remove(requestData, (err, response) => {
       if (response && response.success === true) {
         App.updateWidgets();
         App.updateForms();
+        this.clear();
       }
     });
   }
